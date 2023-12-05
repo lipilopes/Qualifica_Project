@@ -16,7 +16,7 @@
             android:name=".MainActivity_CreateAccount"
             android:exported="false" />
         <activity
-            android:name=".`MainActivity-Login`"
+            android:name=".MainActivity_Login"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">My Project</string>
+    <string name="createAccount_UnderLine"><u>Create Account</u></string>
     <string name="createAccount">Create Account</string>
 </resources>

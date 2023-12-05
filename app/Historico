@@ -1,8 +1,21 @@
 [0.1.0]
     - Novo
             * Criação da Tela de login
-            * Adicionei algumas cores no xml colores
+            * Adicionei algumas cores no xml colors
                 * primary   - azul [#3436AF]
                 * second    - azul [#2A80B0]
             * Adicionei uma palavra no xml string
                 * createAccount - Create Account
+
+[0.1.1]
+    - Novo
+            * Adicionei uma nova cor no xml colors
+                * colorless - branco transparente
+            * Adicionei uma palavra no xml string
+                * createAccount_UnderLine - Create Account (sublinhado)
+            * Activity_main_login
+                * Add 2 novos botoes
+                    * google icon login
+                    * phone icon login
+    - Fix
+            * add LinearLayout dentro do card
