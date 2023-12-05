@@ -19,3 +19,15 @@
                     * phone icon login
     - Fix
             * add LinearLayout dentro do card
+
+[0.2.0]
+    - Novo
+            * CheckLayout
+                * função emailIsOk - verifica se o email esta ok
+                * função passwordIsOk - verifica se o senha esta ok
+            * MainActivity_Login
+                * fiz as funções dos botoes de Login - esperando a logica
+                * botao criar nova conta muda de tela
+            * MainActivity_CreateAccount
+    - Remove
+            * Retirei o butao phoneLogin

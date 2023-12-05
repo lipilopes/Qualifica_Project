@@ -70,12 +70,13 @@
                     android:backgroundTint="@color/second"
                     android:text="Google_Icon_HERE" />
 
-                <Button
+               <!--> <Button
                     android:id="@+id/buttonPhoneLogin"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:backgroundTint="@color/second"
                     android:text="Phone_Icon_HERE" />
+                  </!-->
             </LinearLayout>
 
         <Button
