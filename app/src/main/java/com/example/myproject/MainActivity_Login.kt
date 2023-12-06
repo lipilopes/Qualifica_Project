@@ -1,26 +1,51 @@
 package com.example.myproject
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.content.Intent
 import com.example.myproject.CheckLayout.Companion.emailIsOk
 import com.example.myproject.CheckLayout.Companion.passwordIsOk
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity_Login : AppCompatActivity()
 {
-    private val btnGoogleLogin: Button     = findViewById(R.id.buttonGoogleLogin)
-    private val btnLogin: Button           = findViewById(R.id.buttonLogin)
-    private val btnCreateAccount: Button   = findViewById(R.id.buttonCreateAccount)
+    private lateinit var btnGoogleLogin: Button
+    private lateinit var btnLogin: Button
+    private lateinit var btnCreateAccount: Button
 
-    private val editTextEmailAddress: EditText  = findViewById(R.id.editTextEmailAddress)
-    private val editTextPassword : EditText     = findViewById(R.id.editTextPassword)
+    private lateinit var editTextEmailAddress: EditText
+    private lateinit var editTextPassword : EditText
+
+    private lateinit var firebaseAuth: FirebaseAuth
+
+    private fun initLayout()
+    {
+        btnGoogleLogin     = findViewById(R.id.buttonGoogleLogin)
+        btnLogin           = findViewById(R.id.buttonLogin)
+        btnCreateAccount   = findViewById(R.id.buttonCreateAccount)
+
+        editTextEmailAddress    = findViewById(R.id.editTextEmailAddress)
+        editTextPassword        = findViewById(R.id.editTextPassword)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_login)
+
+        //funcao para iniciar todos os componentes do layout
+        initLayout()
+
+        firebaseAuth = FirebaseAuth.getInstance()
+
+        /*
+        if(intent.getStringExtra("email").isNullOrEmpty() == false)
+        {
+            editTextEmailAddress.text = intent.getStringExtra("email")
+        }
+        */
 
         btnLogin.setOnClickListener {
             login()
@@ -39,26 +64,29 @@ class MainActivity_Login : AppCompatActivity()
     private fun login()
     {
         //verifica se todos os campos estão preenchidos
-        if(emailIsOk(editTextEmailAddress.text.toString()) == false && passwordIsOk(editTextPassword.text.toString()) == false)
+        if(emailIsOk(editTextEmailAddress.text) == true && passwordIsOk(editTextPassword.text) == true)
         {
-            //Error
-            return
+            val email       = editTextEmailAddress.text.toString().trim()
+            val password    = editTextPassword.text.toString().trim()
+
+            //faz Login
+            firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener {
+                //vai pra tela principal
+               // firebaseAuth.uid
+            }
         }
-        //faz Login
+        //error
     }
 
     //faz login pela conta goole
     private fun Googlelogin()
     {
-
+       // firebaseAuth.isSignInWithEmailLink()
     }
 
     private fun goToCreateAccount()
     {
         val intent = Intent(this, MainActivity_CreateAccount::class.java)
-
-        intent.putExtra("email", editTextEmailAddress.text)
-        intent.putExtra("password", editTextPassword.text)
 
         startActivity(intent)
         finish()

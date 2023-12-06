@@ -31,3 +31,20 @@
             * MainActivity_CreateAccount
     - Remove
             * Retirei o butao phoneLogin
+
+[0.3.0]
+    - Novo
+            * Criando Conta e mandando pro firebase
+                *falta salvar dados no Firestore
+            * Logar na conta
+            * MainActivity_CreateAccount
+                * Criação base do layout
+            * Novos icones
+                * seta de voltar
+                * casa
+                * perfil
+            * Adicionei duas nova cor no xml colors
+                 * error    - vermelho [#EC0C0C]
+                 * complete - verde [#349710]
+   - Fix
+            * CheckLayout todos os parametros mudados de String -> Editable
