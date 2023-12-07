@@ -1,24 +1,26 @@
 package com.example.myproject
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.TextView
-import com.example.myproject.CheckLayout.Companion.emailIsOk
-import com.example.myproject.CheckLayout.Companion.passwordCompare
+import com.example.myproject.CheckLayout_Class.Companion.emailIsOk
+import com.example.myproject.CheckLayout_Class.Companion.passwordCompare
+import com.example.myproject.CheckLayout_Class.Companion.toastMsg
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.firestore
+import com.google.firebase.Firebase
 
-class MainActivity_CreateAccount : AppCompatActivity()
+class CreateAccount_MainActivity : AppCompatActivity()
 {
     private lateinit var firebaseAuth: FirebaseAuth
 
     private lateinit var  btnBack: ImageButton
     private lateinit var  btnCreateAccount: Button
-
-    private lateinit var  errorView: TextView
 
     private lateinit var  editTextNick: EditText
     private lateinit var  editTextEmailAddress: EditText
@@ -29,8 +31,6 @@ class MainActivity_CreateAccount : AppCompatActivity()
     {
         btnBack             = findViewById(R.id.buttonBack)
         btnCreateAccount    = findViewById(R.id.buttonCreateAccount)
-
-        errorView   = findViewById(R.id.textViewFeedBack)
 
         editTextNick          = findViewById(R.id.editTextNick)
         editTextEmailAddress  = findViewById(R.id.editTextEmailAddress)
@@ -58,27 +58,56 @@ class MainActivity_CreateAccount : AppCompatActivity()
 
     private fun createAccount()
     {
+        //verifica se email senha e nick estão corretos
         if(verifyEmail() && verifyPassWord() && verifyNickName()) {
-            val email: String = editTextEmailAddress.text.toString().trim()
-            val password: String = editTextPassword.text.toString().trim()
+
+            val email: String = editTextEmailAddress.text.toString().trim()//pega email do usuario
+            val password: String = editTextPassword.text.toString().trim()//pega senha do usuario
+            val nick:String = editTextNick.text.toString()//pega nick
 
             firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
                 if (it.isSuccessful) {
-                    errorView.text = "Conta criada\n" + it.getResult().toString()
+
+                    // Create a new user with a first and last name
+                    val user = hashMapOf(
+                        "nick" to "$nick",
+                        "email" to "$email"
+                    )
+
+                    val db = Firebase.firestore
+
+                    db.collection("users").document(firebaseAuth.uid.toString())
+                        .set(user)
+                        .addOnSuccessListener { goToLoggedScreen(); Log.d(TAG, "DocumentSnapshot successfully written!")}
+                        .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
+
                 } else {
-                    errorView.text = it.exception.toString()
+                    toastMsg(it.exception.toString(), this)
                 }
             }
         }
-        else
-            errorView.text = "Has something wrong here!!!"
+        else {
+            toastMsg( getString(R.string.createAccount_error), this)
+            return
+        }
+
+        toastMsg( getString(R.string.loading), this)
     }
 
+    private fun goToLoggedScreen()
+    {
+        toastMsg(getString(R.string.createAccount_completed, editTextNick.text.toString()), this)
 
+        //vai para a tela
+        val intent = Intent(this, LoggedScreen_MainActivity::class.java)
+        intent.putExtra("uid",firebaseAuth.uid)
+        startActivity(intent)
+        finish()
+    }
 
     private fun comeBackToLogin()
     {
-        val intent = Intent(this, MainActivity_Login::class.java)
+        val intent = Intent(this, Login_MainActivity::class.java)
 
         intent.putExtra("email", editTextEmailAddress.text)
 
@@ -89,13 +118,13 @@ class MainActivity_CreateAccount : AppCompatActivity()
     //verifica email
     private fun verifyEmail(): Boolean
     {
-        return emailIsOk(editTextEmailAddress.text)
+        return emailIsOk(editTextEmailAddress.text,this)
     }
 
     //verifica senha
     private fun verifyPassWord(): Boolean
     {
-        return passwordCompare(editTextPassword.text, editTextPasswordCheck.text)
+        return passwordCompare(editTextPassword.text, editTextPasswordCheck.text,this)
     }
 
     //verifica se o nick é unico

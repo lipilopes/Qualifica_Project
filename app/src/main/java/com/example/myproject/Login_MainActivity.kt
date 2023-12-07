@@ -5,11 +5,12 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.content.Intent
-import com.example.myproject.CheckLayout.Companion.emailIsOk
-import com.example.myproject.CheckLayout.Companion.passwordIsOk
+import com.example.myproject.CheckLayout_Class.Companion.emailIsOk
+import com.example.myproject.CheckLayout_Class.Companion.passwordIsOk
+import com.example.myproject.CheckLayout_Class.Companion.toastMsg
 import com.google.firebase.auth.FirebaseAuth
 
-class MainActivity_Login : AppCompatActivity()
+class Login_MainActivity : AppCompatActivity()
 {
     private lateinit var btnGoogleLogin: Button
     private lateinit var btnLogin: Button
@@ -19,6 +20,7 @@ class MainActivity_Login : AppCompatActivity()
     private lateinit var editTextPassword : EditText
 
     private lateinit var firebaseAuth: FirebaseAuth
+    //private lateinit var googleSignInClient: GoogleSignInClient
 
     private fun initLayout()
     {
@@ -40,12 +42,12 @@ class MainActivity_Login : AppCompatActivity()
 
         firebaseAuth = FirebaseAuth.getInstance()
 
-        /*
-        if(intent.getStringExtra("email").isNullOrEmpty() == false)
-        {
-            editTextEmailAddress.text = intent.getStringExtra("email")
-        }
-        */
+        /*val gso = GoogleSignInOptions.Builder(GoggleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken("760071566854-l42q8jucnl7md8snrgkrto9s887ej71o.apps.googleusercontent.com")
+            .requestEmail()
+            .build()
+
+        googleSignInClient = GoogleSignIn.getClient(this, gso)*/
 
         btnLogin.setOnClickListener {
             login()
@@ -64,30 +66,44 @@ class MainActivity_Login : AppCompatActivity()
     private fun login()
     {
         //verifica se todos os campos estão preenchidos
-        if(emailIsOk(editTextEmailAddress.text) == true && passwordIsOk(editTextPassword.text) == true)
+        if(emailIsOk(editTextEmailAddress.text,this) == true && passwordIsOk(editTextPassword.text,this) == true)
         {
             val email       = editTextEmailAddress.text.toString().trim()
             val password    = editTextPassword.text.toString().trim()
 
             //faz Login
             firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener {
-                //vai pra tela principal
-               // firebaseAuth.uid
+                if (it.isSuccessful) {
+
+                    //val string: String = getString(R.string.)
+                    toastMsg(getString(R.string.welcome, firebaseAuth.uid), this)
+                    //vai pra tela principal
+                    goToLoggedScreen()
+                }else
+                    toastMsg(it.exception.toString(), this)
             }
         }
-        //error
     }
+
 
     //faz login pela conta goole
     private fun Googlelogin()
     {
-       // firebaseAuth.isSignInWithEmailLink()
+       //val intent = googleSignInClient.signInIntent
     }
 
     private fun goToCreateAccount()
     {
-        val intent = Intent(this, MainActivity_CreateAccount::class.java)
+        val intent = Intent(this, CreateAccount_MainActivity::class.java)
 
+        startActivity(intent)
+        finish()
+    }
+
+    private fun goToLoggedScreen()
+    {
+        val intent = Intent(this, LoggedScreen_MainActivity::class.java)
+        intent.putExtra("uid",firebaseAuth.uid)
         startActivity(intent)
         finish()
     }

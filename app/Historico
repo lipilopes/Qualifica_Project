@@ -48,3 +48,19 @@
                  * complete - verde [#349710]
    - Fix
             * CheckLayout todos os parametros mudados de String -> Editable
+
+[0.4.0]
+    - Novo
+            * Tela principal apos o login com os fragmentos
+                * Home
+                * Seach
+                * Perfil
+             * Strings
+                * para erros na tela de login/criação de conta
+                * para botoes na tela de login/criação de conta
+             * ToastMsg
+                * feedback para o usuario
+             * Login Totalmente funcional
+                * Salva infos no firestore
+   - Fix
+            * Mudei o nome dos arquivos
