@@ -6,6 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".Login_MainActivity">
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        app:constraint_referenced_ids="cardView,buttonCreateAccount,textTitle" />
+
+    <TextView
+        android:id="@+id/textViewLoading"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="@string/loading"
+        android:textAlignment="center"
+        android:textSize="50dp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="400dp"
@@ -57,28 +77,28 @@
             android:textColor="@color/black"
             android:textColorHint="@color/black" />
 
-            <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="80dp"
-                android:layout_marginTop="30dp"
-                android:gravity="center">
+            <!--> <LinearLayout
+               android:layout_width="300dp"
+               android:layout_height="80dp"
+               android:layout_marginTop="30dp"
+               android:gravity="center">
 
-                <Button
-                    android:id="@+id/buttonGoogleLogin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="@color/second"
-                    android:text="Google_Icon_HERE" />
+                 <Button
+                      android:id="@+id/buttonGoogleLogin"
+                      android:layout_width="wrap_content"
+                      android:layout_height="match_parent"
+                      android:backgroundTint="@color/second"
+                      android:text="Google_Icon_HERE" />
 
-               <!--> <Button
+                  <Button
                     android:id="@+id/buttonPhoneLogin"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:backgroundTint="@color/second"
                     android:text="Phone_Icon_HERE" />
-                  </!-->
-            </LinearLayout>
 
+            </LinearLayout>
+    </!-->
         <Button
             android:id="@+id/buttonLogin"
             android:layout_width="300dp"

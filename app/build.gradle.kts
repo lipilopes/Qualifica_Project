@@ -46,6 +46,8 @@ android {
 }
 
 dependencies {
+
+    implementation ("com.daimajia.androidanimations:library:2.4@aar")//anim text
     //implementation("com.google.android.gms:play-services-auth:20.7.0'") // login with google
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     //implementation("com.android.support:appcompat-v7:23.2.0")

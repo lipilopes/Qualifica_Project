@@ -5,9 +5,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.TextView
+import androidx.constraintlayout.widget.Group
+import com.daimajia.androidanimations.library.Techniques
+import com.daimajia.androidanimations.library.YoYo
 import com.example.myproject.CheckLayout_Class.Companion.emailIsOk
 import com.example.myproject.CheckLayout_Class.Companion.passwordCompare
 import com.example.myproject.CheckLayout_Class.Companion.toastMsg
@@ -27,6 +32,11 @@ class CreateAccount_MainActivity : AppCompatActivity()
     private lateinit var  editTextPassword: EditText
     private lateinit var  editTextPasswordCheck: EditText
 
+    private lateinit var  group: Group
+
+    private lateinit var textLoading: TextView
+
+    //inicia o layout
     private fun initLayout()
     {
         btnBack             = findViewById(R.id.buttonBack)
@@ -36,6 +46,10 @@ class CreateAccount_MainActivity : AppCompatActivity()
         editTextEmailAddress  = findViewById(R.id.editTextEmailAddress)
         editTextPassword      = findViewById(R.id.editTextPassword)
         editTextPasswordCheck = findViewById(R.id.editTextPasswordCheck)
+
+        group                 = findViewById(R.id.group)
+
+        textLoading           = findViewById(R.id.textViewLoading)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,12 +59,15 @@ class CreateAccount_MainActivity : AppCompatActivity()
         //funcao para iniciar todos os componentes do layout
         initLayout()
 
+        //seta o firebase
         firebaseAuth = FirebaseAuth.getInstance()
 
+        //função do botao de valtar
         btnBack.setOnClickListener{
             comeBackToLogin()
         }
 
+        //função do butao de criar conta
         btnCreateAccount.setOnClickListener{
             createAccount()
         }
@@ -58,6 +75,11 @@ class CreateAccount_MainActivity : AppCompatActivity()
 
     private fun createAccount()
     {
+        group.visibility = View.GONE
+
+        //faz animação no textView
+        YoYo.with(Techniques.Flash).delay(2000).repeat(5).duration(1000).playOn(textLoading)
+
         //verifica se email senha e nick estão corretos
         if(verifyEmail() && verifyPassWord() && verifyNickName()) {
 
@@ -67,42 +89,31 @@ class CreateAccount_MainActivity : AppCompatActivity()
 
             firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
                 if (it.isSuccessful) {
-
                     // Create a new user with a first and last name
-                    val user = hashMapOf(
-                        "nick" to "$nick",
-                        "email" to "$email"
-                    )
+                    val user = Data_User(firebaseAuth.uid,nick,email)
 
+                    //inicia o firestore
                     val db = Firebase.firestore
 
+                    //coleção user -> cria uma nova pasta com o uid do usuario
                     db.collection("users").document(firebaseAuth.uid.toString())
                         .set(user)
-                        .addOnSuccessListener { goToLoggedScreen(); Log.d(TAG, "DocumentSnapshot successfully written!")}
+                        .addOnSuccessListener { comeBackToLogin(); Log.d(TAG, "DocumentSnapshot successfully written!")}
                         .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
 
                 } else {
+                    group.visibility = View.VISIBLE
                     toastMsg(it.exception.toString(), this)
                 }
             }
         }
         else {
+            group.visibility = View.VISIBLE
             toastMsg( getString(R.string.createAccount_error), this)
             return
         }
 
         toastMsg( getString(R.string.loading), this)
-    }
-
-    private fun goToLoggedScreen()
-    {
-        toastMsg(getString(R.string.createAccount_completed, editTextNick.text.toString()), this)
-
-        //vai para a tela
-        val intent = Intent(this, LoggedScreen_MainActivity::class.java)
-        intent.putExtra("uid",firebaseAuth.uid)
-        startActivity(intent)
-        finish()
     }
 
     private fun comeBackToLogin()
@@ -118,13 +129,13 @@ class CreateAccount_MainActivity : AppCompatActivity()
     //verifica email
     private fun verifyEmail(): Boolean
     {
-        return emailIsOk(editTextEmailAddress.text,this)
+        return emailIsOk(editTextEmailAddress,this)
     }
 
     //verifica senha
     private fun verifyPassWord(): Boolean
     {
-        return passwordCompare(editTextPassword.text, editTextPasswordCheck.text,this)
+        return passwordCompare(editTextPassword, editTextPasswordCheck,this)
     }
 
     //verifica se o nick é unico

@@ -1,6 +1,8 @@
 package com.example.myproject
 
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.myproject.CheckLayout_Class.Companion.toastMsg
@@ -14,15 +16,28 @@ class LoggedScreen_MainActivity : AppCompatActivity() {
     private val searchFragment = SearchFragment()
     private val profileFragment = ProfileFragment()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        //Fragmento inicial
+    private lateinit var uidProfile: String
+
+    private lateinit var btnLoggout : Button
+
+    private fun initLayout()
+    {
         setContentView(R.layout.activity_logged_screen_main)
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        initLayout()
+
+        uidProfile = intent.getStringExtra("uid").isNullOrEmpty().toString()
 
         // Define o fragmento inicial
         setCurrentFragment(homeFragment)
+
+        toastMsg(uidProfile,this)
 
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {

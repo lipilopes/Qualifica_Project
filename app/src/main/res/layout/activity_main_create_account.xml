@@ -6,6 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".CreateAccount_MainActivity">
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        app:constraint_referenced_ids="buttonCreateAccount,linearLayoutCompat"
+        />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearLayoutCompat_Loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textViewLoading"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="@string/loading"
+            android:textAlignment="center"
+            android:textSize="50dp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linearLayoutCompat"
@@ -27,7 +59,8 @@
             android:layout_gravity="top"
             android:backgroundTint="@color/second"
             android:src="@drawable/ic_return"
-            app:tint="@color/white" />
+            app:tint="@color/white"
+            />
 
 
         <TextView
