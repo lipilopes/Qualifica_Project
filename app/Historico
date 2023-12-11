@@ -64,3 +64,14 @@
                 * Salva infos no firestore
    - Fix
             * Mudei o nome dos arquivos
+
+[0.5.0]
+    - Novo
+            * Tela de carregamento apos criar conta ou logar
+            * Nova lib para criar efeito da letra mexendo
+            * Apos dar erro na senha ou email editText Mexe
+    - Fix
+            * Apos criar conta vai para a tela de login
+                * Salva email digitado
+    - Bug
+            * class Fragment -> não consigo criar nada

@@ -22,7 +22,6 @@ import com.google.firebase.firestore.firestore
 
 class Login_MainActivity : AppCompatActivity()
 {
-    //private lateinit var btnGoogleLogin: Button
     private lateinit var btnLogin: Button
     private lateinit var btnCreateAccount: Button
 
@@ -34,11 +33,11 @@ class Login_MainActivity : AppCompatActivity()
 
 
     private lateinit var firebaseAuth: FirebaseAuth
-    //private lateinit var googleSignInClient: GoogleSignInClient
 
     private fun initLayout()
     {
-        //btnGoogleLogin     = findViewById(R.id.buttonGoogleLogin)
+        firebaseAuth = FirebaseAuth.getInstance()
+
         btnLogin           = findViewById(R.id.buttonLogin)
         btnCreateAccount   = findViewById(R.id.buttonCreateAccount)
 
@@ -63,23 +62,9 @@ class Login_MainActivity : AppCompatActivity()
         //funcao para iniciar todos os componentes do layout
         initLayout()
 
-        firebaseAuth = FirebaseAuth.getInstance()
-
-        /* logar com google
-        val gso = GoogleSignInOptions.Builder(GoggleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken("760071566854-l42q8jucnl7md8snrgkrto9s887ej71o.apps.googleusercontent.com")
-            .requestEmail()
-            .build()
-
-        googleSignInClient = GoogleSignIn.getClient(this, gso)*/
-
         btnLogin.setOnClickListener {
             login()
         }
-
-        /*btnGoogleLogin.setOnClickListener {
-            Googlelogin()
-        }*/
 
         btnCreateAccount.setOnClickListener {
             goToCreateAccount()
@@ -120,9 +105,7 @@ class Login_MainActivity : AppCompatActivity()
                             Log.d(TAG, "get failed with ", exception)
                         }
 
-
-                    //val string: String = getString(R.string.)
-                    toastMsg(getString(R.string.welcome, firebaseAuth.uid), this)
+                    toastMsg(getString(R.string.welcome, firebaseAuth.currentUser?.displayName+""), this)
                     //vai pra tela principal
                     goToLoggedScreen()
                 }
@@ -140,13 +123,6 @@ class Login_MainActivity : AppCompatActivity()
             //desativa tela para mostrar texto de loading...
             group.visibility = View.VISIBLE
         }
-    }
-
-
-    //faz login pela conta goole
-    private fun Googlelogin()
-    {
-       //val intent = googleSignInClient.signInIntent
     }
 
     private fun goToCreateAccount()

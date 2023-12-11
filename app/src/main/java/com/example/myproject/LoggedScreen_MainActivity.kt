@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.myproject.CheckLayout_Class.Companion.toastMsg
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.example.myproject.publicFunctions.Companion.checkLogged
+import com.example.myproject.publicFunctions.Companion.loggout
 
 class LoggedScreen_MainActivity : AppCompatActivity() {
 
@@ -34,8 +37,11 @@ class LoggedScreen_MainActivity : AppCompatActivity() {
 
         uidProfile = intent.getStringExtra("uid").isNullOrEmpty().toString()
 
+        if(checkLogged() == false)
+            loggout()
+
         // Define o fragmento inicial
-        setCurrentFragment(homeFragment)
+        setCurrentFragment(profileFragment)
 
         toastMsg(uidProfile,this)
 
