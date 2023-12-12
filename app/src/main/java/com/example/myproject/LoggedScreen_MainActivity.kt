@@ -1,15 +1,12 @@
 package com.example.myproject
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.myproject.CheckLayout_Class.Companion.toastMsg
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.auth.FirebaseAuth
-import com.example.myproject.publicFunctions.Companion.checkLogged
-import com.example.myproject.publicFunctions.Companion.loggout
+import com.example.myproject.PublicFunctions.Companion.checkLogged
+import com.example.myproject.PublicFunctions.Companion.logout
 
 class LoggedScreen_MainActivity : AppCompatActivity() {
 
@@ -18,10 +15,6 @@ class LoggedScreen_MainActivity : AppCompatActivity() {
     private val homeFragment = HomeFragment()
     private val searchFragment = SearchFragment()
     private val profileFragment = ProfileFragment()
-
-    private lateinit var uidProfile: String
-
-    private lateinit var btnLoggout : Button
 
     private fun initLayout()
     {
@@ -33,17 +26,15 @@ class LoggedScreen_MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        //inicia layout
         initLayout()
 
-        uidProfile = intent.getStringExtra("uid").isNullOrEmpty().toString()
-
+        //verifica se o usuario esta logado
         if(checkLogged() == false)
-            loggout()
+            comeBackToLogin()
 
         // Define o fragmento inicial
         setCurrentFragment(profileFragment)
-
-        toastMsg(uidProfile,this)
 
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
@@ -72,6 +63,17 @@ class LoggedScreen_MainActivity : AppCompatActivity() {
             replace(R.id.fragmentContainer, fragment)
             commit()
         }
+    }
+
+    //faz loggout e volta para tela de login
+    private fun comeBackToLogin()
+    {
+        logout()
+
+        val intent = Intent(this, Login_MainActivity::class.java)
+
+        startActivity(intent)
+        finish()
     }
 
 }

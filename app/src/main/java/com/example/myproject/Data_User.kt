@@ -12,7 +12,6 @@ data class Data_User(
     //var stars: MutableMap<String, Boolean> = HashMap(),
 )
 {
-
     @Exclude
     fun toMap(): Map<String, Any?> {
         return mapOf(
@@ -27,14 +26,14 @@ data class Data_User(
 }
 
 
-data class Data_(
+data class Data_Post(
     var owner: Data_User?           ,
     var title: String?              ,
     var description: String?        ,
     var guests: Array<Data_User>?   ,
-    var post: Array<Data_Post>?     ,
+    var guestPost: Array<Data_GuestPost>?     ,
     var totalVotes: Int             ,
-    var timeOver: Long              ,//time para finalizar votos
+    var timeOver: Long              ,//tempo para finalizar votos
     )
 {
     @Exclude
@@ -44,14 +43,14 @@ data class Data_(
             "title" to title,
             "description" to description,
             "guests" to guests,
-            "post" to post,
+            "guestPost" to guestPost,
             "totalVotes" to totalVotes,
             "timeOver" to timeOver,
         )
     }
 }
 
-data class Data_Post(
+data class Data_GuestPost(
     var owner: Data_User?,
     var img: Image?,
     var title: String?,

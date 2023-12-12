@@ -86,13 +86,15 @@ class Login_MainActivity : AppCompatActivity()
             val email       = editTextEmailAddress.text.toString().trim()
             val password    = editTextPassword.text.toString().trim()
 
-            //faz Login
+            //envia o email e senha para o firebase
             firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener {
-                if (it.isSuccessful)
+                if (it.isSuccessful)//se o retorno for successful é por logou
                 {
+                    //entro nos arquivos do usuario
                     val docRef = Firebase.firestore.collection(getString(R.string.db_users))
                         .document(firebaseAuth.uid.toString())
 
+                    //puxa informações do usuario
                     docRef.get()
                         .addOnSuccessListener { document ->
                             if (document != null) {
@@ -105,7 +107,9 @@ class Login_MainActivity : AppCompatActivity()
                             Log.d(TAG, "get failed with ", exception)
                         }
 
-                    toastMsg(getString(R.string.welcome, firebaseAuth.currentUser?.displayName+""), this)
+                    //mostra o nome do usuario logado
+                    toastMsg(getString(R.string.welcome, firebaseAuth.currentUser?.displayName), this)
+
                     //vai pra tela principal
                     goToLoggedScreen()
                 }
@@ -114,7 +118,14 @@ class Login_MainActivity : AppCompatActivity()
                     //retira texto de loading
                     group.visibility = View.VISIBLE
 
+                    //mostra o erro sem nenhum tratamento
                     toastMsg(it.exception.toString(), this)
+
+                    /*
+                    var dialog = CustomDialogFragment()
+                    dialog.show(supportFragmentManager,"customDialog")
+                    dialog.startDialog("Error",it.exception.toString(),"change PassWord",{ goToCreateAccount() })
+                    */
                 }
             }
         }
@@ -125,6 +136,7 @@ class Login_MainActivity : AppCompatActivity()
         }
     }
 
+    //muda para a tela de criar conta
     private fun goToCreateAccount()
     {
         val intent = Intent(this, CreateAccount_MainActivity::class.java)
@@ -133,10 +145,10 @@ class Login_MainActivity : AppCompatActivity()
         finish()
     }
 
+    //muda para a tela principal
     private fun goToLoggedScreen()
     {
         val intent = Intent(this, LoggedScreen_MainActivity::class.java)
-        intent.putExtra("uid",firebaseAuth.uid)
         startActivity(intent)
         finish()
     }

@@ -3,8 +3,9 @@ package com.example.myproject
 import com.google.firebase.auth.FirebaseAuth
 
 
-class publicFunctions
+class PublicFunctions
 {
+
     companion object
     {
         lateinit var firebaseAuth:FirebaseAuth
@@ -14,6 +15,7 @@ class publicFunctions
             val user = firebaseAuth.getCurrentUser()
 
            return user != null
+
         }
 
         fun logout()

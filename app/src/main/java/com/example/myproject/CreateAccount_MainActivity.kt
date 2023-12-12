@@ -109,7 +109,7 @@ class CreateAccount_MainActivity : AppCompatActivity()
         }
         else {
             group.visibility = View.VISIBLE
-            toastMsg( getString(R.string.createAccount_error), this)
+
             return
         }
 
