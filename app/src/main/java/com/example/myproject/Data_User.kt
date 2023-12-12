@@ -31,7 +31,7 @@ data class Data_Post(
     var title: String?              ,
     var description: String?        ,
     var guests: Array<Data_User>?   ,
-    var guestPost: Array<Data_GuestPost>?     ,
+    var votePost: Array<Data_VotePost>?     ,
     var totalVotes: Int             ,
     var timeOver: Long              ,//tempo para finalizar votos
     )
@@ -43,14 +43,14 @@ data class Data_Post(
             "title" to title,
             "description" to description,
             "guests" to guests,
-            "guestPost" to guestPost,
+            "votePost" to votePost,
             "totalVotes" to totalVotes,
             "timeOver" to timeOver,
         )
     }
 }
 
-data class Data_GuestPost(
+data class Data_VotePost(
     var owner: Data_User?,
     var img: Image?,
     var title: String?,

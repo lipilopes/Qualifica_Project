@@ -5,18 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.myproject.PublicFunctions.Companion.logout
+import com.google.firebase.auth.FirebaseAuth
 
 class ProfileFragment : Fragment()
 {
     private lateinit var rootview: View
 
-    //private lateinit var name: TextView
+    private lateinit var name: TextView
+
+    private lateinit var firebaseAuth:FirebaseAuth
 
     private fun initLayout()
     {
-        //name = rootview.findViewById(R.id.TextViewName)
+        name = rootview.findViewById(R.id.TextViewName)
     }
 
     override fun onCreateView(
@@ -35,8 +39,7 @@ class ProfileFragment : Fragment()
             logout()
         }
 
-
-        //name.text = "Welcome, "+firebaseAuth.currentUser?.email
+        name.text = "Welcome, "+firebaseAuth.currentUser?.displayName
 
         return rootview
   }

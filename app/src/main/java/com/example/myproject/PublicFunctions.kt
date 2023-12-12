@@ -8,7 +8,7 @@ class PublicFunctions
 
     companion object
     {
-        lateinit var firebaseAuth:FirebaseAuth
+       private lateinit var firebaseAuth:FirebaseAuth
 
         fun checkLogged(): Boolean
         {
