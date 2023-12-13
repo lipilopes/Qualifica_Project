@@ -7,7 +7,7 @@ data class Data_User(
     var uid: String? = "",
     var nick: String? = "",
     var email: String? = "",
-    //var body: String? = "",
+    var profilePicture: String? = "",
     //var starCount: Int = 0,
     //var stars: MutableMap<String, Boolean> = HashMap(),
 )
@@ -18,7 +18,7 @@ data class Data_User(
             "uid" to uid,
             "nick" to nick,
             "email" to email,
-            //"body" to body,
+            "profilePicture" to profilePicture,
             //"starCount" to starCount,
             //"stars" to stars,
         )
@@ -31,8 +31,8 @@ data class Data_Post(
     var title: String?              ,
     var description: String?        ,
     var guests: Array<Data_User>?   ,
-    var votePost: Array<Data_VotePost>?     ,
-    var totalVotes: Int             ,
+    var votePost: Array<Data_VotePost>?,
+    var totalVotes: Int  = 0        ,
     var timeOver: Long              ,//tempo para finalizar votos
     )
 {

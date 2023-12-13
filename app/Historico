@@ -75,3 +75,13 @@
                 * Salva email digitado
     - Bug
             * class Fragment -> não consigo criar nada
+
+[0.6.0]
+    - Novo
+            * nome na tela de Perfil
+
+[0.7.0]
+    - Novo
+            * imagem do profile na tela de perfil
+            * imagem na criação da conta
+            * tela de search para criar post

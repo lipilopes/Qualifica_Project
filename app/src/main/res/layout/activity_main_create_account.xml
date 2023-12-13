@@ -71,6 +71,14 @@
             android:textSize="50dp"
             android:textStyle="bold" />
 
+        <ImageButton
+            android:id="@+id/imageProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:src="@tools:sample/avatars"
+            android:backgroundTint="@color/second"
+            android:layout_marginTop="20dp"/>
+
         <EditText
             android:id="@+id/editTextNick"
             android:layout_width="wrap_content"

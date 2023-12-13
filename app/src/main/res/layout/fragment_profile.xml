@@ -10,6 +10,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/imageViewProfile"
+            android:layout_width="193dp"
+            android:layout_height="193dp"
+            app:layout_constraintBottom_toTopOf="@+id/TextViewName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintCircleRadius="20dp"
+            tools:src="@tools:sample/avatars" />
+
         <TextView
             android:id="@+id/TextViewName"
             android:layout_width="wrap_content"
@@ -21,21 +32,21 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.024" />
+            app:layout_constraintVertical_bias="0.359" />
 
         <Button
             android:id="@+id/buttonLogout"
             android:layout_width="150dp"
             android:layout_height="62dp"
-            android:text="@string/logout"
+            android:layout_marginBottom="36dp"
 
+            android:text="@string/logout"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/text"
-            app:layout_constraintVertical_bias="0.953"
-            tools:layout_editor_absoluteY="435dp" />
+            app:layout_constraintHorizontal_bias="0.509"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

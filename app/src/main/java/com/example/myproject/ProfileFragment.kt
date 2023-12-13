@@ -5,11 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.myproject.CheckLayout_Class.Companion.toastMsg
 import com.example.myproject.PublicFunctions.Companion.logout
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.firestore
 
 class ProfileFragment : Fragment()
 {
@@ -19,9 +24,13 @@ class ProfileFragment : Fragment()
 
     private lateinit var name: TextView
 
+    private lateinit var profileImg: ImageView
+
     private fun initLayout()
     {
         name = rootview.findViewById(R.id.TextViewName)
+
+        profileImg = rootview.findViewById(R.id.imageViewProfile)
     }
 
     override fun onCreateView(
@@ -38,9 +47,20 @@ class ProfileFragment : Fragment()
             logout()
         }
 
+        val firestore = FirebaseFirestore.getInstance()
+        val docRef = firestore.collection(getString(R.string.db_users)).document("${firebaseAuth.uid}")
+        docRef.get()
+            .addOnSuccessListener {
+            }
+            .addOnFailureListener { exception ->
+                toastMsg("${exception?.message}", this.rootview.context)
+            }
+
         val fbUser: FirebaseUser? = firebaseAuth.currentUser
 
-        name.text = "Welcome, ${fbUser?.displayName}"
+        name.text = getString(R.string.welcome,fbUser?.displayName)
+
+        //baixar imagem do perfil
 
         return rootview
   }

@@ -10,6 +10,7 @@ class PublicFunctions
     {
         private lateinit var firebaseAuth:FirebaseAuth
 
+
         fun checkLogged(): Boolean
         {
             val user = firebaseAuth.getCurrentUser()
