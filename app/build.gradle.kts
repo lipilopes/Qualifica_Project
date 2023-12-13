@@ -1,9 +1,6 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-
-    //firebase
-    //id("com.android.application")
     id("com.google.gms.google-services")
 }
 
@@ -48,7 +45,6 @@ android {
 dependencies {
 
     implementation ("com.daimajia.androidanimations:library:2.4@aar")//anim text
-    //implementation("com.google.android.gms:play-services-auth:20.7.0'") // login with google
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     //implementation("com.android.support:appcompat-v7:23.2.0")
     implementation("androidx.core:core-ktx:1.9.0")
@@ -66,13 +62,5 @@ dependencies {
 
     // Import the Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:32.6.0"))
-
-
-    // TODO: Add the dependencies for Firebase products you want to use
-    // When using the BoM, don't specify versions in Firebase dependencies
     implementation("com.google.firebase:firebase-analytics")
-
-
-    // Add the dependencies for any other desired Firebase products
-    // https://firebase.google.com/docs/android/setup#available-libraries
 }

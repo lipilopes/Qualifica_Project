@@ -88,7 +88,8 @@ class Login_MainActivity : AppCompatActivity()
 
             //envia o email e senha para o firebase
             firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener {
-                if (it.isSuccessful)//se o retorno for successful é por logou
+                    task ->
+                if (task.isSuccessful)//se o retorno for successful é por logou
                 {
                     //entro nos arquivos do usuario
                     val docRef = Firebase.firestore.collection(getString(R.string.db_users))
@@ -118,13 +119,20 @@ class Login_MainActivity : AppCompatActivity()
                     //retira texto de loading
                     group.visibility = View.VISIBLE
 
-                    //mostra o erro sem nenhum tratamento
-                    toastMsg(it.exception.toString(), this)
+                    // Se falhar, tratar o erro
+                    task.exception?.let { exception ->
+                        // Tratar a exceção aqui
+                        // Exemplo: exibir uma mensagem de erro para o usuário
+                        toastMsg(
+                            "${exception.message}",
+                            this
+                        )
+                    }
 
                     /*
                     var dialog = CustomDialogFragment()
                     dialog.show(supportFragmentManager,"customDialog")
-                    dialog.startDialog("Error",it.exception.toString(),"change PassWord",{ goToCreateAccount() })
+                    dialog.startDialog("Error","${exception.message}")
                     */
                 }
             }

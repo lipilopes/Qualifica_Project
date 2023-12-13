@@ -1,14 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SearchFragment">
 
-
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/" />
+        android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="197dp"
+            android:layout_height="203dp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+
+
+        <EditText
+            android:id="@+id/editTextTitle"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="36dp"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="@string/postTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <EditText
+            android:id="@+id/editTextDescription"
+            android:layout_width="253dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="32dp"
+            android:ems="10"
+            android:gravity="start|top"
+
+            android:hint="@string/postTDescription"
+            android:inputType="textMultiLine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTitle" />
+
+
+        <Button
+            android:id="@+id/buttonTakePicture"
+            android:layout_width="252dp"
+            android:layout_height="56dp"
+
+            android:layout_marginTop="32dp"
+            android:backgroundTint="@color/second"
+            android:text="@string/takePicture"
+
+
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextDescription" />
+
+        <Button
+            android:id="@+id/buttonCreatePost"
+            android:layout_width="341dp"
+            android:layout_height="63dp"
+
+            android:backgroundTint="@color/second"
+            android:text="@string/createPost"
+
+
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonTakePicture" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

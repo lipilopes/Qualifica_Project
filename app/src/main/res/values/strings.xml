@@ -21,4 +21,10 @@
     <string name="nav_search_name">Search</string>
     <string name="logout">Logout</string>
     <string name="loading">loading...</string>
+
+    <string name="takePicture">Take a Picture</string>
+    <string name="postTitle">Post Title</string>
+    <string name="postTDescription">Post Description</string>
+
+    <string name="createPost">Create Post</string>
 </resources>

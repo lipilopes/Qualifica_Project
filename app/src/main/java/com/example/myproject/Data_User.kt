@@ -52,10 +52,10 @@ data class Data_Post(
 
 data class Data_GuestPost(
     var owner: Data_User?,
-    var img: Image?,
+    var img: String?,
     var title: String?,
     var description: String?,
-    var votes: Int?,
+    var votes: Int = 0,
 ){
     fun toMap(): Map<String, Any?> {
         return mapOf(

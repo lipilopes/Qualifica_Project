@@ -19,6 +19,8 @@ import com.example.myproject.CheckLayout_Class.Companion.toastMsg
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.firestore
 import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.UserProfileChangeRequest
 
 class CreateAccount_MainActivity : AppCompatActivity()
 {
@@ -98,12 +100,19 @@ class CreateAccount_MainActivity : AppCompatActivity()
                     //coleção user -> cria uma nova pasta com o uid do usuario
                     db.collection("users").document(firebaseAuth.uid.toString())
                         .set(user)
-                        .addOnSuccessListener { comeBackToLogin(); Log.d(TAG, "DocumentSnapshot successfully written!")}
+                        .addOnSuccessListener { comeBackToLogin(); }
                         .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
+
+
+                    val fbUser: FirebaseUser? = firebaseAuth.currentUser
+                    val profileUpdates = UserProfileChangeRequest.Builder()
+                        .setDisplayName(nick)
+                        .build()
+                    fbUser?.updateProfile(profileUpdates)
 
                 } else {
                     group.visibility = View.VISIBLE
-                    toastMsg(it.exception.toString(), this)
+                    toastMsg("${it.exception?.message}", this)
                 }
             }
         }
