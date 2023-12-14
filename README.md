@@ -13,5 +13,10 @@ Enquetes,usuarios e fotos ficam armazenados no firebase
 | 2. Criação de Conta<br />![createaccount_Screen](https://github.com/lipilopes/Qualifica_Project/assets/26468934/36ba35a0-6b83-4e7a-9dca-84d6051954d4) | 1. Foto de perfil, Apelido<br />2. Verifição de email e senha
 | 3. Criação de Post(Fragmento)<br />![createPost_Screen](https://github.com/lipilopes/Qualifica_Project/assets/26468934/c4536735-f6ce-484e-a9ce-52fe66789b94) | 1. Titulo, Descrição, Foto da Capa<br />2. Abre camera,Foto fica salva na galeria e no firebase
 
-[Historico](https://github.com/lipilopes/Qualifica_Project/blob/master/app/Historico)
-[Apresentação](https://docs.google.com/presentation/d/e/2PACX-1vTk-Vx_X3-GNnywG5V1BtKWke1g5RcTFFeCQgyi4i0tifbNIHYt6MFKi-rcvhpe2RNV1G-0neKDe9w_/pub?start=false&loop=false&delayms=3000)
+<br />
+
+### Links
+
+> <a href="https://github.com/lipilopes/Qualifica_Project/blob/master/app/Historico" target="_blank">Historico</a>
+> <br /><a href="https://docs.google.com/presentation/d/e/2PACX-1vTk-Vx_X3-GNnywG5V1BtKWke1g5RcTFFeCQgyi4i0tifbNIHYt6MFKi-rcvhpe2RNV1G-0neKDe9w_/pub?start=false&loop=false&delayms=3000">Apresentação</a>
+
