@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="createAccount">Criar Conta</string>
+    <string name="createAccount_error">Tem algo de errado aqui!!! Verifique seu <b>EMAIL</b> ou <b>SENHA</b></string>
+    <string name="createAccount_completed">%1$s\\nConta  Criada com\\nSuceso</string>
+    <string name="password">Account Created with</string>
+    <string name="password_error_empty">Success</string>
+    <string name="password_error_little">Senha precisa contem mais que 8 caracteres</string>
+    <string name="passwordCheck_error_notEqual">As senhas não sao iguais</string>
+    <string name="email_error_empty">E-mail não pode estar vbazio</string>
+    <string name="email_error_fake">Isso não parece um endereço de email</string>
+    <string name="nickname">Apelido</string>
+    <string name="welcome">Bem Vindo, %1$s</string>
+    <string name="nav_profile_name">Perfil</string>
+    <string name="nav_search_name">Pesquisar</string>
+    <string name="loading">Carregando</string>
+    <string name="takePicture">Tirar Foto</string>
+    <string name="postTitle">Titulo do Post</string>
+    <string name="postTDescription">Descrição do Post</string>
+    <string name="createPost">Criar Post</string>
+    <string name="PickPicture">Selecionar Foto</string>
+    <string name="uploadImg">Imagem Salva!!</string>
+    <string name="createAccount_UnderLine"><u>Criar Conta</u></string>
+</resources>

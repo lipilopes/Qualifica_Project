@@ -1,14 +1,12 @@
 <resources>
-    <string name="db_users">users</string>
-    <string name="db_post">survey</string>
-    <string name="db_storage_pictureProfile">Pictures/%1$s</string>
+    <string name="db_users" translatable="false">users</string>
+    <string name="db_post" translatable="false">survey</string>
+    <string name="db_storage_pictureProfile" translatable="false">Pictures/%1$s</string>
 
     <!-->falta id doc do post para colocar Pictures/ID_POST/UID_USER<!-->
-    <string name="db_storage_picturePost">Pictures/%1$s/%2$s</string>
+    <string name="db_storage_picturePost" translatable="false">Pictures/%1$s/%2$s</string>
 
-
-    <string name="app_name">My Project</string>
-    <string name="createAccount_UnderLine"><u>Create Account</u></string>
+    <string name="app_name" translatable="false">My Project</string>
     <string name="createAccount">Create Account</string>
     <string name="createAccount_error">Something wrong here!!!\nCheck you address <b>EMAIL</b> or <b>PASSWORD</b></string>
     <string name="createAccount_completed">%1$s\nAccount Created with\nSuccess</string>
@@ -16,16 +14,16 @@
     <string name="password_error_empty">Password not be empty!!!</string>
     <string name="password_error_little">Password need be 8 or more characters!!!</string>
     <string name="passwordCheck_error_notEqual">Passwords not be Equal</string>
-    <string name="email">E-mail</string>
+    <string name="email" translatable="false">E-mail</string>
     <string name="email_error_empty">E-mail not be empty!!!</string>
     <string name="email_error_fake">This do not look a address email!!!</string>
     <string name="nickname">Nick</string>
     <string name="welcome">Welcome, %1$s</string>
 
     <string name="nav_profile_name">Profile</string>
-    <string name="nav_home_name">Home</string>
+    <string name="nav_home_name" translatable="false">Home</string>
     <string name="nav_search_name">Search</string>
-    <string name="logout">Logout</string>
+    <string name="logout" translatable="false">Logout</string>
     <string name="loading">loading...</string>
 
     <string name="takePicture">Take a Picture</string>
@@ -35,4 +33,5 @@
     <string name="createPost">Create Post</string>
     <string name="PickPicture">Pick a picture</string>
     <string name="uploadImg">Image Uploaded!!</string>
+    <string name="createAccount_UnderLine"><u>Create Account</u></string>
 </resources>
